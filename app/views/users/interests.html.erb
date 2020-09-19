@@ -1,0 +1,32 @@
+<div class="container mt-5">
+
+<h1>気になるリスト</h1>
+
+<% if @interests.present? %>
+<table class="table" style="width:500px;">
+  <% @interests.each do |interest| %>
+    <tr>
+        <td><%= form_with(model:interest, local: true, method: :delete) do |f| %>
+      <%= f.hidden_field :shop_id, :value => interest.shop_id %>
+      <%= f.hidden_field :shop_name, :value => interest.shop_name %>
+      <%= f.hidden_field :shop_url, :value => interest.shop_url %>
+      <%= f.button :type => "submit" , style: 'border-style: none; background: none;', class: 'inter' do %>
+    <i class="fas fa-undo-alt undo"></i>
+    <% end %></td>
+      <% end %>
+      
+      <td><a href = "<%= interest.shop_url %>" target="_blank"　rel="noopener noreferrer"><%= interest.shop_name %></a></td>
+      <td><a href = "/posts/<%= interest.shop_id %>/new" class="btn  btn-sm decide2"><i class="fas fa-check"></i>評価する</a>
+    </tr>
+<% end %>
+</table>
+
+<%= paginate @interests %>
+
+<% else %>
+
+<p>気になるリストの登録がありません</p>
+
+<% end %>
+
+</div>

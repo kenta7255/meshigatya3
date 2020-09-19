@@ -1,0 +1,49 @@
+.memo {
+  border: solid 2px black;
+  border-radius: 1em;
+}
+
+.form-control:focus {
+  border: solid 2px black;
+  box-shadow: none;
+}
+
+.custom-radio input {
+  display: none;
+}
+
+
+.custom-radio label {
+  color: #ddd;
+  font-size: 4em;
+}
+
+.custom-radio label:hover {
+  color: #888;
+}
+
+.custom-radio input[type="radio"]:checked+.good {
+  color: #00B900;
+}
+
+.custom-radio input[type="radio"]:checked+.bad {
+  color: #DA1725;
+}
+
+.btn--yellow {
+  color: #000;
+  width: 150px;
+  background-color: #fff100;
+  border-bottom: 5px solid #ccc100;
+}
+
+.btn--yellow:hover {
+  margin-top: 3px;
+  color: #000;
+  background: #fff20a;
+  border-bottom: 2px solid #ccc100;
+}
+
+.center{
+  text-align:center;
+}

@@ -1,0 +1,82 @@
+header {
+  background: #1E90FF;
+}
+
+nav {
+
+
+  .navbar-brand .logo {
+    width: 200px;
+  }
+
+  .navbar-brand .logo:hover {
+    animation: hurueru .1s 5;
+  }
+
+  .line {
+    width: 25px;
+    display: none;
+  }
+
+  .food {
+    width: 50px;
+    display: none;
+  }
+
+
+  .navbar-brand:hover .food {
+    opacity: 0;
+    animation: fade-in 1s step-start 0.4s forwards;
+    display: inline-block;
+    transform: translateX(5px) translateY(15px) rotateZ(70deg);
+  }
+
+  .navbar-brand:hover .line {
+    opacity: 0;
+    animation: fade-in 1s step-start 0.35s forwards;
+    display: inline-block;
+    transform: translateX(5px) translateY(0px);
+  }
+
+
+  .nav-item {
+    margin-left: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    img:hover {
+      -webkit-transform: translateY(-0.3em) scale(1.2);
+      -moz-transform: translateY(-0.3em) scale(1.2);
+    }
+  }
+}
+
+
+@keyframes hurueru {
+  0% {
+    transform: translate(0px, 0px) rotateZ(0deg)
+  }
+  25% {
+    transform: translate(2px, 2px) rotateZ(1deg)
+  }
+  50% {
+    transform: translate(0px, 2px) rotateZ(0deg)
+  }
+  75% {
+    transform: translate(2px, 0px) rotateZ(-1deg)
+  }
+  100% {
+    transform: translate(0px, 0px) rotateZ(0deg)
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  100% {
+    display: inline-block;
+    opacity: 1;
+  }
+}

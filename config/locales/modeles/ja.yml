@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+      gatya: ガチャ
+    attributes:
+      post:
+        shop_id: お店
+      user:
+        name: 名前
+        email: メール
+        password: パスワード

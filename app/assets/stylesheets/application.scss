@@ -1,0 +1,39 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@font-face {
+ font-family: 'NikkyouSans-B6aV';
+ src: asset_url('/assets/NikkyouSans-B6aV.ttf');
+}
+
+@font-face {
+ font-family: 'KosugiMaru-Regular';
+ src: asset_url('/assets/KosugiMaru-Regular.ttf');
+}
+
+body {
+ font-family: 'KosugiMaru-Regular';
+}
+
+.btn:focus,
+.btn:active {
+ outline: none !important;
+ box-shadow: none;
+}
+
+a:hover {
+ text-decoration: none;
+}

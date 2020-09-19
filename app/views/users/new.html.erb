@@ -1,0 +1,49 @@
+
+<div class="container">
+
+<div class="text-center">
+  <h1>新規登録</h1>
+</div>
+
+<div class="row">
+  <div class="col-6 offset-3 signup-form">
+
+    <%= form_with(model: @user, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :name, 'ユーザ名' %>
+        <%= f.text_field :name, class: 'form-control form' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, 'メール' %>
+        <%= f.email_field :email, class: 'form-control form' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, 'パスワード' %>
+        <%= f.password_field :password, class: 'form-control form' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'パスワード確認' %>
+        <%= f.password_field :password_confirmation, class: 'form-control form' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+      </di>
+      
+      <div class="form-group">
+        <%= f.label :profile, 'プロフィール' %>
+        <%= f.text_area :profile, class: 'form-control form', rows: 5 %>
+      </div>
+      <div class="submit">
+      <%= f.submit '登録！', class: 'btn btn--yellow btn--cubic' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>

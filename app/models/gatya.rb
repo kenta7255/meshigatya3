@@ -1,0 +1,3 @@
+class Gatya < ApplicationRecord
+  
+end

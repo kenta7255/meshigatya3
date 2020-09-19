@@ -1,0 +1,55 @@
+.shop_memo {
+  max-width: 300px;
+  word-break: break-all;
+}
+
+.profile {
+  max-width: 500px;
+  word-break: break-all;
+}
+
+.good {
+  font-size: 25px;
+  color: #00B900;
+}
+
+.bad {
+  font-size: 25px;
+  color: #DA1725;
+}
+
+.int {
+  color: #CCCCCC;
+  font-size: 25px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.int:hover {
+  color: #F2E52E;
+  cursor: pointer;
+}
+
+.not_int {
+  color: #F2E52E;
+  font-size: 25px;
+}
+
+.not_int:hover {
+  cursor: pointer;
+  color: #CCCCCC;
+}
+
+
+
+@media (max-width: 559px) {
+  .shop_memo {
+    max-width: 150px;
+    word-break: break-all;
+  }
+  .show {
+    width: 400px;
+  }
+}

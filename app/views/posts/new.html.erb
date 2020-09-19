@@ -1,0 +1,79 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+      <div class="container">
+
+  <table  class="table">
+    <tr><td>店舗名</td><td id="shop_name"></td></tr>
+    <tr><td>カテゴリー</td><td id="shop_category"></td></tr>
+    <tr><td>営業時間</td><td id="shop_opentime"></td></tr>
+    <tr><td>住所</td><td id="shop_address"></td></tr>
+  </table>
+  
+        <%= form_with(model: @post, local: true) do |f| %>
+       
+      
+      <div class="form-group custom-radio">
+        
+        <%= f.radio_button :eval, :good %>
+        <%= f.label :eval_good , class: 'good' do %>
+        <i class="far fa-thumbs-up"></i>
+        <% end %>
+        
+        
+        <%= f.radio_button :eval, :bad %>
+        <%= f.label :eval_bad , class: 'bad' do %>
+        <i class="far fa-thumbs-down"></i>
+        <% end %>
+      </div>
+  
+      <div class="form-group">
+        <%= f.label :content, 'メモ' %>
+        <%= f.text_area :content, class: 'form-control memo', size: "15x5" %>
+      </div>
+      
+      <%= f.hidden_field :shop_id, :value => params[:id] %>
+      <%= f.hidden_field :shop_name, {id: "post_shop_name"} %>
+      <%= f.hidden_field :shop_url, {id: "post_shop_url"} %>
+      <%= f.hidden_field :shop_station, {id: "post_shop_station"} %>
+
+      <div class="center">
+        <%= f.submit '保存！', class: 'btn btn--yellow btn--cubic' %>
+      </div>
+    <% end %>
+    
+  
+    </div>
+    
+    
+
+  <script>
+  
+//   var f;
+// if (f == 1){
+// location.reload(true);
+// }
+// f = 1;
+    
+    $( function successCallback () {
+      var url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
+      var params = {
+        keyid: "<%= ENV['GNAVI_KEY'] %>",
+        id: "<%= params[:id] %>"
+      }
+        $.getJSON( url, params, function(data){
+          var shop = data.rest[0];
+          $("#shop_name").append(`<a href ="${shop.url}"　" target="_blank"　rel="noopener noreferrer">${shop.name}</a>`)
+          $("#shop_category").append(`${shop.category}`)
+          if (shop.opentime){
+            $("#shop_opentime").append(`${shop.opentime}`)
+          }else{
+            $("#shop_opentime").append(`提供情報がありません`)
+          }
+          $("#shop_address").append(`${shop.address}`)
+        document.getElementById( "post_shop_name" ).value = shop.name;
+        document.getElementById( "post_shop_url" ).value = shop.url;
+        document.getElementById( "post_shop_station" ).value = shop.access.station;
+       
+        })
+    })
+  </script>
