@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :require_user_logged_in
-  
+
   def new
     @id = params[:id]
     @post = Post.new
@@ -9,7 +11,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     @interest = current_user.interests.find_by(delete_interest_prm)
-    @interest.destroy if @interest
+    @interest&.destroy
     if @post.save
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to user_url(@post.user)
@@ -24,14 +26,14 @@ class PostsController < ApplicationController
     flash[:success] = 'メッセージを削除しました。'
     redirect_back(fallback_location: root_path)
   end
-  
+
   private
 
   def post_params
-    params.require(:post).permit(:content,:eval,:shop_id,:shop_name,:shop_url,:shop_station)
+    params.require(:post).permit(:content, :eval, :shop_id, :shop_name, :shop_url, :shop_station)
   end
-  
+
   def delete_interest_prm
-    params.require(:post).permit(:shop_id,:shop_name,:shop_url)
+    params.require(:post).permit(:shop_id, :shop_name, :shop_url)
   end
 end

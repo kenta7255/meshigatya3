@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateGatyas < ActiveRecord::Migration[5.2]
   def change
     create_table :gatyas do |t|

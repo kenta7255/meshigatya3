@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,49 +12,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_031925) do
-
-  create_table "gatyas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.float "lat"
-    t.float "lon"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+ActiveRecord::Schema.define(version: 20_200_919_031_925) do
+  create_table 'gatyas', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.float 'lat'
+    t.float 'lon'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "interests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "shop_name"
-    t.string "shop_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "shop_url"
-    t.index ["user_id"], name: "index_interests_on_user_id"
+  create_table 'interests', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.string 'shop_name'
+    t.string 'shop_id'
+    t.bigint 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'shop_url'
+    t.index ['user_id'], name: 'index_interests_on_user_id'
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "content"
-    t.bigint "user_id"
-    t.string "eval"
-    t.string "shop_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "shop_name"
-    t.text "shop_url"
-    t.string "shop_station"
-    t.index ["user_id"], name: "index_posts_on_user_id"
+  create_table 'posts', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.string 'content'
+    t.bigint 'user_id'
+    t.string 'eval'
+    t.string 'shop_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'shop_name'
+    t.text 'shop_url'
+    t.string 'shop_station'
+    t.index ['user_id'], name: 'index_posts_on_user_id'
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "area"
-    t.string "image"
-    t.text "profile"
+  create_table 'users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'area'
+    t.string 'image'
+    t.text 'profile'
   end
 
-  add_foreign_key "interests", "users"
-  add_foreign_key "posts", "users"
+  add_foreign_key 'interests', 'users'
+  add_foreign_key 'posts', 'users'
 end

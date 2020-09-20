@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class InterestsController < ApplicationController
-  
   def create
     @interest = current_user.interests.build(interest_params)
     if @interest.save
@@ -17,11 +18,10 @@ class InterestsController < ApplicationController
     flash[:danger] = '気になるリストから削除しました。'
     redirect_back(fallback_location: root_path)
   end
-  
+
   private
-  
+
   def interest_params
-    params.require(:interest).permit(:shop_id,:shop_name,:shop_url)
+    params.require(:interest).permit(:shop_id, :shop_name, :shop_url)
   end
-  
 end
