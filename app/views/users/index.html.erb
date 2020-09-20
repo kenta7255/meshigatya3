@@ -1,33 +1,33 @@
-<div class="container">
-
-<% if @users.any? %>
-  <% @users.each do |user| %>
-<div class="card mt-3">
-      <div class="row no-gutters">
-        <div class="col-3 img-box">
-          <%= link_to(user_path(user)) do %>
-           <% if user.image? %>                                                             
-            <%= image_tag user.image.thumb.url class: 'card-img' %>
-            <% else %>
-            <img src="assets/default.png" class="card-img defalt">
-      　　　　<% end %>
-      <% end %>
-       <% if user.area && user.area == current_user.area %>
+<div class="container users_index">
+  <% if @users.any? %>
+    <% @users.each do |user| %>
+      <div class="card mt-3">
+        <div class="row no-gutters">
+          <div class="col-3 img-box">
+            <%= link_to(user_path(user)) do %>
+              <% if user.image? %>                                                             
+                <%= image_tag user.image.thumb.url , class: 'card-img' %>
+              <% else %>
+              <%= image_tag 'default.png' , class: 'card-img' %>
+      　　　   　<% end %>
+            <% end %>
+            <% if user.area && user.area == current_user.area %>
               <i class="fas fa-star"></i>
-        <% end %>
-        </div>
-        <div class="col-9">
-          <div class="card-body">
-            <h4 class="card-title"><%= user.name %></h4>
-            <div class="profile">プロフィール：<p><% if user.profile? %><%= user.profile %><% else %>登録がありません。<% end %></p></div>
-            <p><%= link_to 'このユーザーを見てみる', user_path(user) %></p>
+            <% end %>
           </div>
-        </div>
+          <div class="col-9">
+            <div class="card-body">
+              <h4 class="card-title"><%= user.name %></h4>
+              <div class="profile">プロフィール：<p><% if user.profile? %><%= user.profile %><% else %>登録がありません。<% end %></p></div>
+              <p><%= link_to 'このユーザーを見てみる', user_path(user) %></p>
+            </div>
+          </div>
       </div>
     </div>
+  <% end %>
 <% end %>
-<% end %>
-<div class="mt-3">
-<%= paginate @users %>
-</div>
+
+  <div class="mt-3">
+    <%= paginate @users %>
+  </div>
 </div>

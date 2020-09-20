@@ -1,61 +1,85 @@
-.card {
-  height: 180px;
-  max-width: 800px;
-  border: solid 2px black;
-  border-radius: 1em;
-}
-
-.card-body {
-  padding: 10px;
-}
-
-.card-body p {
-  margin-bottom: .5em;
-}
-
-.profile p {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  font-size: 0.8em;
-}
-
-.link {
-  font-size: 0.8em;
-}
-
-.defalt {
-  width: 150px;
-  height: auto;
-}
-
-.card-img-overlay {
-  width: 10px;
-  height: 10px;
-}
-
-.img-box {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  position: relative;
-  img {
-    text-align: center;
-  }
-  .fa-star {
-    color: #ffd900;
-    font-size: 25px;
-    position: absolute;
-    top: 5%;
-    left: 10%;
+.users_index {
+  .card {
+    height: 180px;
+    max-width: 800px;
+    border: solid 2px black;
+    border-radius: 1em;
   }
 
+  .card-body {
+    padding: 10px;
+  }
+
+  .card-body p {
+    margin-bottom: .5em;
+  }
+
+  .profile p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 0.8em;
+  }
+
+  .link {
+    font-size: 0.8em;
+  }
+
+  .card-img-overlay {
+    width: 10px;
+    height: 10px;
+  }
+
+  .img-box {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    position: relative;
+    img {
+      text-align: center;
+      width: 150px;
+    }
+    .fa-star {
+      color: #ffd900;
+      font-size: 25px;
+      position: absolute;
+      top: 5%;
+      left: 10%;
+    }
+  }
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 420px) {
+  .users_index {
+    .card {
+      height: 120px;
+      .img-box {
+        .card-img {
+          width: 70px;
+        }
+      }
+      .card-title {
+        font-size: 1em;
+      }
+      .profile {
+        font-size: 0.7em;
+      }
+      .fa-star {
+        font-size: 15px;
+      }
+      p {
+        font-size: .5em;
+      }
+    }
+  }
 }
