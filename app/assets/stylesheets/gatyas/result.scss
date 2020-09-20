@@ -1,13 +1,11 @@
-.container {
-  padding: 0;
+.result_container {
+  padding-top: 15px;
   margin-bottom: 30px;
-  .table {
-      font-size: 0.8em;
-    }
-  .wrap {
+  .result_map {
     width: 100%;
     position: relative;
     margin: auto;
+    padding-top: 50%;
     #map {
       position: absolute;
       width: 100%;
@@ -17,25 +15,33 @@
       border-radius: 1em;
     }
   }
+  .table {
+    font-size: 0.8em;
+    th {
+      white-space: nowrap;
+    }
+  }
+  .button .result_button {
+    display: inline-block;
+  }
+}
+
+.result_btn {
+  color: white;
+  width: 9em;
 }
 
 
 .google {
   background: #4285F4;
-  color: white;
-  width: 9em;
 }
 
 .in {
   background: #F2E52E;
-  width: 9em;
-  color: white;
 }
 
 .decide {
   background: #FF8B33;
-  width: 9em;
-  color: white;
 }
 
 .fa-search {
@@ -48,29 +54,44 @@
 
 .fa-exclamation {
   margin-right: 5px;
-  text-shadow: 0px 0px 2px #000, 2px 2px 3px #000;
 }
 
 
-// @media (max-width: 960px) {
-// 	.wrap {
-// 		padding-top: 50%;
-// 	}
-// }
-@media (min-width: 320px) {
-  .wrap {
-    padding-top: 100%;
+@media (max-width: 768px) {
+  .result_container {
+    .result_map {
+      padding-top: 60%;
+    }
   }
 }
 
-@media (min-width: 559px) {
-  .wrap {
-    padding-top: 75%;
+@media (max-width: 420px) {
+  .result_container {
+    .result_map {
+      padding-top: 90%;
+    }
+    .table {
+      font-size: 0.6em;
+    }
+    .result_btn {
+      width: 8.5em;
+      font-size: 0.6em;
+    }
+  }
+  .gm-style-iw-d {
+    font-size: 0.6em;
+  }
+  .fa-search {
+    margin-right: 2px;
+  }
+
+  .fa-check {
+    margin-right: 2px;
+  }
+
+  .fa-exclamation {
+    margin-right: 2px;
   }
 }
 
-@media (min-width: 960px) {
-  .wrap {
-    padding-top: 50%;
-  }
-}
+

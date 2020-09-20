@@ -1,30 +1,29 @@
-<div class="main">
-<div class="jumbotron jumbotron-fluid text-center" style="background: url('/assets/background<%= rand(1..3) %>.jpg') center no-repeat; background-size: cover;">
+<div class="index_main">
+    <div class="jumbotron jumbotron-fluid text-center" style="background: url('/assets/background<%= rand(1..3) %>.jpg') center no-repeat; background-size: cover;">
         <h1>メシガチャ</h1>
         <p class="lead">あなたの現在位置からランダムに近場の飲食店を提案！</p>
         <%= link_to  gatyas_result_path, class: 'btn btn-custom01'  do %>
             <span class="btn-custom01-front">ガチャ！</span>      
         <% end %>
-</a>
-</div>
-
-<div class="container-fluid">
-    <h2 class="text-center">登録するとできること!!</h2>
-    <div class="row">
-        <div class="col-md-4 explanation">
-        <p>簡単な店の評価が記録できる！</p>
-        <img src="/assets/eval.png" class="eval-img">
-        </div>
-        <div class="col-md-4 explanation">
-            <p>他のユーザの投稿を見れる！</p>
-            <img src="/assets/userposts.png" class="eval-img">
-            </div>
-        <div class="col-md-4 explanation">
-            <p>気になるリストに追加できる！</p>
-            <img src="/assets/interest2.png" class="eval-img">
-            </div>
     </div>
-</div>
+
+    <div class="container-fluid">
+        <h2 class="text-center">登録するとできること!!</h2>
+        <div class="row">
+            <div class="col-md-4 explanation">
+                <p>簡単な店の評価が記録できる！</p>
+                <img src="/assets/eval.png" class="eval-img">
+            </div>
+            <div class="col-md-4 explanation">
+                <p>他のユーザの投稿を見れる！</p>
+                <img src="/assets/userposts.png" class="eval-img">
+            </div>
+            <div class="col-md-4 explanation">
+                <p>気になるリストに追加できる！</p>
+                <img src="/assets/interest2.png" class="eval-img">
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -1,45 +1,39 @@
- <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_KEY'] %>"></script>
-
-</script>
 <div id="show_result"></div>
-<div class="container">
-  <p>動かない場合やガチャし直したいときはリロードしてください。</p>
-  <div class="wrap">
+<div class="container result_container">
+  <div class="wrap result_map">
+  
   <div id="map" ></div> 
   </div>
   
-  
-  
-  
   <table  class="table">
-    <tr><td>店舗名</td><td id="shop_name"></td></tr>
-    <tr><td>カテゴリー</td><td id="shop_category"></td></tr>
-    <tr><td>営業時間</td><td id="shop_opentime"></td></tr>
-    <tr><td>住所</td><td id="shop_address"></td></tr>
+    <tr><th>店舗名</th><td id="shop_name"></td></tr>
+    <tr><th>カテゴリー</th><td id="shop_category"></td></tr>
+    <tr><th>営業時間</th><td id="shop_opentime"></td></tr>
+    <tr><th>住所</th><td id="shop_address"></td></tr>
   </table>
   
   
   <div class="button">
-    
-  <% if logged_in?  %>
+    <% if logged_in?  %>
       <%= form_with(model: current_user.interests.build, local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-      <%= f.hidden_field :shop_id, {id: "interests_shop_id"} %>
-      <%= f.hidden_field :shop_name, {id: "interests_shop_name"} %>
-      <%= f.hidden_field :shop_url, {id: "interests_shop_url"} %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div style="display:inline-block;" id ="interest"></div>
-       <div style="display:inline-block;" id ="decide"></div>
-       <div style="display:inline-block;" id ="search"></div>
-        <% end %>
-        <% else %>
-        <div style="display:inline-block;" id ="search"></div>
-        <% end %>
-        </div>
-      </div>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <%= f.hidden_field :shop_id, {id: "interests_shop_id"} %>
+        <%= f.hidden_field :shop_name, {id: "interests_shop_name"} %>
+        <%= f.hidden_field :shop_url, {id: "interests_shop_url"} %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <div class="result_button" id ="interest"></div>
+        <div class="result_button" id ="decide"></div>
+        <div class="result_button" id ="search"></div>
+      <% end %>
+    <% else %>
+      <div class="result_button" id ="search"></div>
+    <% end %>
+  </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_KEY'] %>"></script>
   
-  
-  <script>
+<script>
 // 結果が2個出てしまう問題の便宜的解決
  var f;
  if (f == 1){
@@ -47,35 +41,33 @@
  }
  f = 1;
  
-navigator.geolocation.getCurrentPosition(success,error,options);
+  navigator.geolocation.getCurrentPosition(success,error,options);
 
  /***** 位置情報が取得できない場合 *****/
-function error(error) {
-  var err_msg = "";
-  switch(error.code)
-  {
-    case 1:
-      err_msg = "位置情報の利用が許可されていません";
-      break;
-    case 2:
-      err_msg = "デバイスの位置が判定できません";
-      break;
-    case 3:
-      err_msg = "タイムアウトしました";
-      break;
-  }
+  function error(error) {
+    var err_msg = "";
+    switch(error.code)
+    {
+      case 1:
+        err_msg = "位置情報の利用が許可されていません";
+        break;
+      case 2:
+        err_msg = "デバイスの位置が判定できません";
+        break;
+      case 3:
+        err_msg = "タイムアウトしました";
+        break;
+    }
   document.getElementById("show_result").innerHTML = err_msg;
-  
-}
+  }
 
-var options = {
-  timeout: 5000,
-	maximumAge: 0
-	};
+  var options = {
+    timeout: 5000,
+	  maximumAge: 0
+	  };
 	
-	     
+// 	位置情報取得しまずトータル検索件数取得
 	function success(position) {
-	  
 	  $( function () {
       const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
       const params = {
@@ -90,136 +82,128 @@ var options = {
         })
       })
     })
-    
+    // 検索開始位置レコードにトータルヒット数が上限の乱数を指定
     const showResult = result => {
-      
-    $( function () {
-      const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
-      console.log(result.total_hit_count);
-      if (result.total_hit_count > 1000){
-        var offset_num = Math.floor(Math.random()*1000);
-      }else{
-        var offset_num = Math.ceil( Math.random()*result.total_hit_count);
-      }
-       console.log(offset_num);
-      const params = {
-        keyid: "<%= ENV['GNAVI_KEY'] %>",
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-        range: 3,
-        hit_per_page: 100,
-        offset: offset_num,
-      }
-      $( function(){
-        $.getJSON( url, params, function(data){
-          console.log(data.rest.length);
-      
-      var filtered_rest = [];
-          for (let i = 0; i < data.rest.length; i++) {
-            // 値が 0 から 4 まで計 5 回実行される
-            if (!~data.rest[i].name.indexOf('サイゼリヤ') && !~data.rest[i].name.indexOf('カラオケ') && !~data.rest[i].name.indexOf('ビッグエコー') &&
-            !~data.rest[i].name.indexOf('すみれ') && !~data.rest[i].name.indexOf('ドトール') && !~data.rest[i].name.indexOf('魚民') && !~data.rest[i].name.indexOf('エクセルシオール')
-            && !~data.rest[i].name.indexOf('大戸屋') && !~data.rest[i].name.indexOf('やよい軒') && !~data.rest[i].name.indexOf('松屋') && !~data.rest[i].name.indexOf('日高屋') && !~data.rest[i].name.indexOf('牛角')
-            && !~data.rest[i].name.indexOf('餃子の王将') && !~data.rest[i].name.indexOf('ミライザカ') && !~data.rest[i].name.indexOf('丸亀製麺')
-          　&& !~data.rest[i].name.indexOf('モスバーガ') && !~data.rest[i].name.indexOf('ココス') && !~data.rest[i].name.indexOf('ガスト') &&　!~data.rest[i].name.indexOf('和民') && !~data.rest[i].name.indexOf('土間土間') && !~data.rest[i].name.indexOf('くら寿司') && !~data.rest[i].name.indexOf('しゃぶしゃぶ温野菜') && !~data.rest[i].name.indexOf('ミスタードーナツ')
-          　&& !~data.rest[i].name.indexOf('サブウェイ') && !~data.rest[i].name.indexOf('天下一品') && !~data.rest[i].name.indexOf('てんや') && !~data.rest[i].category.indexOf('パン屋')　&& !~data.rest[i].name.indexOf('安安')
+      $( function () {
+        const url = "https://api.gnavi.co.jp/RestSearchAPI/v3/"
+        console.log(result.total_hit_count);
+        if (result.total_hit_count > 1000){
+          var offset_num = Math.floor(Math.random()*1000);
+        }else{
+          var offset_num = Math.ceil( Math.random()*result.total_hit_count);
+        }
+         console.log(offset_num);
+        const params = {
+          keyid: "<%= ENV['GNAVI_KEY'] %>",
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          range: 3,
+          hit_per_page: 100,
+          offset: offset_num,
+        }
+        $( function(){
+          $.getJSON( url, params, function(data){
+            console.log(data.rest.length);
+            var filtered_rest = [];
+            for (let i = 0; i < data.rest.length; i++) {
+            // チェーン店を抜くための処理
+              if (!~data.rest[i].name.indexOf('サイゼリヤ') && !~data.rest[i].name.indexOf('カラオケ') && !~data.rest[i].name.indexOf('ビッグエコー') &&
+              !~data.rest[i].name.indexOf('すみれ') && !~data.rest[i].name.indexOf('ドトール') && !~data.rest[i].name.indexOf('魚民') && !~data.rest[i].name.indexOf('エクセルシオール')
+              && !~data.rest[i].name.indexOf('大戸屋') && !~data.rest[i].name.indexOf('やよい軒') && !~data.rest[i].name.indexOf('松屋') && !~data.rest[i].name.indexOf('日高屋') && !~data.rest[i].name.indexOf('牛角')
+              && !~data.rest[i].name.indexOf('餃子の王将') && !~data.rest[i].name.indexOf('ミライザカ') && !~data.rest[i].name.indexOf('丸亀製麺')
+          　  && !~data.rest[i].name.indexOf('モスバーガ') && !~data.rest[i].name.indexOf('ココス') && !~data.rest[i].name.indexOf('ガスト') &&　!~data.rest[i].name.indexOf('和民') && !~data.rest[i].name.indexOf('土間土間') && !~data.rest[i].name.indexOf('くら寿司') && !~data.rest[i].name.indexOf('しゃぶしゃぶ温野菜') && !~data.rest[i].name.indexOf('ミスタードーナツ')
+          　  && !~data.rest[i].name.indexOf('サブウェイ') && !~data.rest[i].name.indexOf('天下一品') && !~data.rest[i].name.indexOf('てんや') && !~data.rest[i].category.indexOf('パン屋')　&& !~data.rest[i].name.indexOf('安安')
           　　&& !~data.rest[i].name.indexOf('牛繁')　&&  !~data.rest[i].name.indexOf('スターバックス') && !~data.rest[i].name.indexOf('CoCo壱番屋') && !~data.rest[i].name.indexOf('かっぱ寿司')
           　　&& !~data.rest[i].name.indexOf('築地銀だこ') && !~data.rest[i].name.indexOf('一蘭')　&& !~data.rest[i].name.indexOf('スシロー') && !~data.rest[i].name.indexOf('いきなりステーキ')
           　　&& !~data.rest[i].name.indexOf('赤から')　&& !~data.rest[i].name.indexOf('磯丸水産') && !~data.rest[i].name.indexOf('はなの舞')　&& !~data.rest[i].name.indexOf('わたみん家') && !~data.rest[i].name.indexOf('きんくら')
           　　&& !~data.rest[i].name.indexOf('カラオケ館')){
                 if (data.rest[i].category){
                    if (!~data.rest[i].category.indexOf('カラオケ') && !~data.rest[i].category.indexOf('カフェ') && !~data.rest[i].category.indexOf('バー') && !~data.rest[i].category.indexOf('かき氷')　&& !~data.rest[i].category.indexOf('コーヒ')　&& !~data.rest[i].category.indexOf('喫茶店') && !~data.rest[i].category.indexOf('サンドイッチ・パン屋')){
-                    filtered_rest.push(data.rest[i]);
-                    console.log(data.rest[i].category);
-                   } 
-                }
+                  　  filtered_rest.push(data.rest[i]);
+                      console.log(data.rest[i].category);
+                     } 
+                  }
+              }
             }
-          }
-          console.log(filtered_rest.length);
-          var max = filtered_rest.length -1;
-          var rand = Math.floor( Math.random() * (max + 1 ) )
-          console.log(rand);
-          var shop = filtered_rest[rand];
-          console.log(shop)
-          <% if logged_in? %>
-        document.getElementById( "interests_shop_name" ).value = shop.name;
-        document.getElementById( "interests_shop_url" ).value = shop.url;
-        document.getElementById( "interests_shop_id" ).value = shop.id;
-        <% end %>
+            console.log(filtered_rest.length);
+            var max = filtered_rest.length -1;
+            var rand = Math.floor( Math.random() * (max + 1 ) )
+            console.log(rand);
+            var shop = filtered_rest[rand];
+            console.log(shop)
+            <% if logged_in? %>
+              document.getElementById( "interests_shop_name" ).value = shop.name;
+              document.getElementById( "interests_shop_url" ).value = shop.url;
+              document.getElementById( "interests_shop_id" ).value = shop.id;
+            <% end %>
 
-          $("#search").append(`<a href ="https://www.google.co.jp/search?q=${shop.name}+${shop.access.station}"　" target="_blank"　rel="noopener noreferrer" class="btn google btn-sm"><i class="fas fa-search"></i>Google検索</a>`)
-          <% if logged_in? %>
-          $("#interest").append(`<button name="button" type="submit" class="btn btn-sm in"> <i class="fas fa-exclamation"></i>気になる</button>`)
-          $("#decide").append(`<a href = "../posts/${shop.id}/new" class="btn  btn-sm decide"><i class="fas fa-check"></i>この店にする</a>`)
-          <% end %>
-          $("#shop_name").append(`<a href ="${shop.url}"　" target="_blank"　rel="noopener noreferrer">${shop.name}</a>`)
-          $("#shop_category").append(`${shop.category}`)
-          if (shop.opentime){
-            $("#shop_opentime").append(`${shop.opentime}`)
-          }else{
-            $("#shop_opentime").append(`提供情報がありません`)
-          }
-          $("#shop_address").append(`${shop.address}`)
+            $("#search").append(`<a href ="https://www.google.co.jp/search?q=${shop.name}+${shop.access.station}"　" target="_blank"　rel="noopener noreferrer" class="result_btn btn google btn-sm"><i class="fas fa-search"></i>Google検索</a>`)
+            <% if logged_in? %>
+              $("#interest").append(`<button name="button" type="submit" class="result_btn btn btn-sm in"> <i class="fas fa-exclamation"></i>気になる</button>`)
+              $("#decide").append(`<a href = "../posts/${shop.id}/new" class="result_btn btn  btn-sm decide"><i class="fas fa-check"></i>ここにする</a>`)
+            <% end %>
+            $("#shop_name").append(`<a href ="${shop.url}"　" target="_blank"　rel="noopener noreferrer">${shop.name}</a>`)
+            $("#shop_category").append(`${shop.category}`)
+            if (shop.opentime){
+              $("#shop_opentime").append(`${shop.opentime}`)
+            }else{
+              $("#shop_opentime").append(`提供情報がありません`)
+            }
+            $("#shop_address").append(`${shop.address}`)
           
-       
-        
-  var myMap = new google.maps.Map(document.getElementById("map"), {
-    // ズームレベル
-    zoom: 15,
-    // 中心点緯度経度
-    center: new google.maps.LatLng(shop.latitude, shop.longitude),
-    // 距離目盛りの表示
-    scaleControl: true,
-    // 地図の種類
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    mapTypeControl: false, //マップタイプ コントロール
-    
-  });
+            var myMap = new google.maps.Map(document.getElementById("map"), {
+            // ズームレベル
+            zoom: 15,
+            // 中心点緯度経度
+            center: new google.maps.LatLng(shop.latitude, shop.longitude),
+            // 距離目盛りの表示
+            scaleControl: true,
+            // 地図の種類
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: false, //マップタイプ コントロール
+            });
   
-  var myMarker = new google.maps.Marker({
-    // マーカーを置く緯度経度
-    position: new google.maps.LatLng(shop.latitude, shop.longitude),
-    map: myMap
-  });
+            var myMarker = new google.maps.Marker({
+            // マーカーを置く緯度経度
+            position: new google.maps.LatLng(shop.latitude, shop.longitude),
+            map: myMap
+            });
   
-  var myMarker2 = new google.maps.Marker({
-    // マーカーを置く緯度経度
-    position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-    map: myMap
-  });
+            var myMarker2 = new google.maps.Marker({
+            // マーカーを置く緯度経度
+            position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+            map: myMap
+            });
   
-  var myInfoWindow = new google.maps.InfoWindow({
-    // 吹き出しに出す文
-    content: shop.name
-  });
+            var myInfoWindow = new google.maps.InfoWindow({
+            // 吹き出しに出す文
+            content: shop.name
+            });
   
-  var myInfoWindow2 = new google.maps.InfoWindow({
-    // 吹き出しに出す文
-    content: "あなたの位置"
-  });
+            var myInfoWindow2 = new google.maps.InfoWindow({
+            // 吹き出しに出す文
+            content: "あなたの位置"
+            });
   
-  // 吹き出しを開く
-  myInfoWindow.open(myMap, myMarker);
-  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
-  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
-    google.maps.event.addListenerOnce(myMarker, "click", function(event) {
-      myInfoWindow.open(myMap, myMarker);
-    });
-  });
-  
-  // 吹き出しを開く
-  myInfoWindow2.open(myMap, myMarker2);
-  google.maps.event.addListener(myInfoWindow2, "closeclick", function() {
-    google.maps.event.addListenerOnce(myMarker2, "click", function(event) {
-      myInfoWindow2.open(myMap, myMarker2);
-    });
-  });
-  
-    })
-      })
-	})
-	
-    }
-      }
+            // 吹き出しを開く
+            myInfoWindow.open(myMap, myMarker);
+            // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+            google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+            google.maps.event.addListenerOnce(myMarker, "click", function(event) {
+            myInfoWindow.open(myMap, myMarker);
+            });
+            });
+            // 吹き出しを開く
+            myInfoWindow2.open(myMap, myMarker2);
+            google.maps.event.addListener(myInfoWindow2, "closeclick", function() {
+            google.maps.event.addListenerOnce(myMarker2, "click", function(event) {
+            myInfoWindow2.open(myMap, myMarker2);
+            });
+            });
+          })
+        })
+	    })
+	  }
+  }
 
-  </script>
+</script>
