@@ -1,8 +1,22 @@
- .form {
-  border: solid 2px black;
-  border-radius: 1em;
+.user-signup {
+  max-width: 400px;
+  textarea {
+    height: 190px;
+  }
 }
 
-.submit {
-  text-align: center;
+@media (max-width: 420px) {
+  .user-signup {
+    font-size: .8em;
+    h1{
+      font-size: 2em;
+    }
+    .image-form{
+      font-size: .5em;
+    }
+    textarea{
+      font-size: 1em;
+      height: 130px;
+    }
+  }
 }

@@ -57,10 +57,17 @@
 }
 
 
+@media (max-width: 1024px) {
+  .result_container {
+    .result_map {
+      padding-top: 70%;
+    }
+  }
+}
 @media (max-width: 768px) {
   .result_container {
     .result_map {
-      padding-top: 60%;
+      padding-top: 80%;
     }
   }
 }

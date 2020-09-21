@@ -1,26 +1,23 @@
-<div class="text-center">
-  <h1>プロフィール情報の編集</h1>
-</div>
+<div class="container user-edit">
+  <div class="mt-3 mb-4">
+    <h1>プロフィール情報の編集</h1>
+  </div>
 
-<div class="row">
-  <div class="col-sm-6 offset-sm-3">
-
-    <%= form_with(model: @user, local: true) do |f| %>
+  <%= form_with(model: @user, local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
 
       <div class="form-group">
         <%= f.label :image %>
         <%= f.file_field :image %>
-      </di>
+      </div>
       
       <div class="form-group">
         <%= f.label :profile, 'プロフィール' %>
-        <%= f.text_area :profile, class: 'form-control profile-form', rows: 5 %>
+        <%= f.text_area :profile, class: 'form-control profile-form' %>
       </div>
 
       <div class="submit">
-      <%= f.submit '更新する！', class: 'btn btn--yellow btn--cubic' %>
+        <%= f.submit '更新する！', class: 'btn btn--yellow btn--cubic' %>
       </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>

@@ -1,15 +1,54 @@
-.undo {
-  color: #CCCCCC;
-  font-size: 1.5em;
+.user-interests {
+  .interests-table {
+    max-width: 800px;
+    font-size: .8em;
+    .name-td {
+      width: 400px;
+    }
+  }
+  .undo {
+    color: #CCCCCC;
+    font-size: 1.5em;
+  }
+
+  .decide {
+    background: #FF8B33;
+    width: 7em;
+    color: white;
+    &:hover {
+      color: black;
+    }
+  }
+
+  .undo:hover {
+    cursor: pointer;
+    color: red;
+  }
 }
 
-.decide2 {
-  background: #FF8B33;
-  width: 7em;
-  color: white;
-}
+@media (max-width: 768px) {}
 
-.undo:hover {
-  cursor: pointer;
-  color: red;
+@media (max-width: 420px) {
+  .user-interests {
+    h1 {
+      font-size: 1.5em;
+    }
+    .interests-table {
+      width: 300px;
+      td {
+        padding: .5em;
+      }
+      .shop-name {
+        font-size: .5em;
+      }
+      .undo {
+        font-size: 1em;
+      }
+      .decide {
+        width: 12em;
+        font-size: .4em;
+        padding: .4em;
+      }
+    }
+  }
 }

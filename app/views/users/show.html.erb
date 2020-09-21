@@ -1,5 +1,5 @@
-<div class="container user_show" style="max-width:700px; margin:15px;" >
-  <div class="user_box row">
+<div class="container user-show">
+  <div class="user-box row">
     <div class="col-md-6">
       <% if @user.image? %>
         <%= image_tag @user.image.url , class: 'show-img'%>
@@ -23,11 +23,11 @@
   <table class="table show_table">
     <tr>
       <% unless current_user == @user %>
-        <th class="int_th">気になる</th>
+        <th class="int-th">気になる</th>
       <% end %>
-      <th>エリア</th>
-      <th>店名</th>
-      <th>評価</th>
+      <th class="nowrap">エリア</th>
+      <th class="nowrap">店名</th>
+      <th class="nowrap">評価</th>
     </tr>
     <tr>
       <% @posts.each do |post| %>
@@ -57,14 +57,14 @@
         </td>
     <% end %>
   <% end %>
-        <td><%= post.shop_station %></td>
+        <td class="nowrap"><%= post.shop_station %></td>
         <td class="content">
           <a href = "<%= post.shop_url %>" target="_blank"　rel="noopener noreferrer"><%= post.shop_name %></a>
           <% if post.content? %>
-            <br><p class="shop_memo">メモ：<br><%= post.content %></p>
+            <br><p class="shop-memo">メモ：<br><%= post.content %></p>
           <% end %>
           </td>
-        <td class="eval"><% if post.eval == 'good' %><i class="far fa-thumbs-up good"></i><% elsif post.eval == 'bad' %><i class="far fa-thumbs-down bad"></i><% else %>評価なし<% end %></td>
+        <td class="eval nowrap"><% if post.eval == 'good' %><i class="far fa-thumbs-up good"></i><% elsif post.eval == 'bad' %><i class="far fa-thumbs-down bad"></i><% else %>評価なし<% end %></td>
        </tr>
      <% end %>
     </table>

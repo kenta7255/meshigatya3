@@ -28,6 +28,12 @@ body {
  font-family: 'KosugiMaru-Regular';
 }
 
+.form {
+ border: solid 2px black;
+ border-radius: 1em;
+}
+
+
 .btn:focus,
 .btn:active {
  outline: none !important;
@@ -36,4 +42,46 @@ body {
 
 a:hover {
  text-decoration: none;
+}
+
+.nowrap {
+ white-space: nowrap;
+}
+
+textarea {
+ border: solid 2px black;
+ border-radius: 1em;
+}
+
+.textarea:focus {
+ box-shadow: none !important;
+ outline: none !important;
+}
+
+.submit {
+ text-align: center;
+}
+
+
+
+.btn--yellow {
+ color: #000;
+ width: 150px;
+ background-color: #fff100;
+ border-bottom: 5px solid #ccc100;
+}
+
+.btn--yellow:hover {
+ margin-top: 3px;
+ color: #000;
+ background: #fff20a;
+ border-bottom: 2px solid #ccc100;
+}
+
+@media (max-width: 420px) {
+ .btn--yellow {
+  width: 85px;
+  font-size: .8em;
+  border-bottom: 3px solid #ccc100;
+ }
 }
