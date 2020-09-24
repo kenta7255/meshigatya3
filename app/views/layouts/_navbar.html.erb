@@ -10,13 +10,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
-        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/users.png", width: '100', alt: 'users'), users_path  %></li>
-        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/user.png", width: '100', alt: 'user'), user_path(current_user) %></li>
-        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/interest.png", width: '100', alt: 'interest'), interests_user_path(current_user) %></li>
-        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/logout.png", width: '100', alt: 'logout'), logout_path, method: :delete %></li>
+        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/users.png", alt: 'users'), users_path  %></li>
+        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/user.png", alt: 'user'), user_path(current_user) %></li>
+        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/interest.png", alt: 'interest'), interests_user_path(current_user) %></li>
+        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/logout.png", alt: 'logout'), logout_path, method: :delete %></li>
         <% else %>
-        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/login.png", width: '100', alt: 'login'), login_path %></li>
-        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/signup.png", width: '100', alt: 'signup'), signup_path %></li>
+        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/login.png", alt: 'login'), login_path %></li>
+        <li class="nav-item mt-2 mt-lg-0"><%= link_to image_tag("/assets/signup.png", alt: 'signup'), signup_path %></li>
         <% end %>
       </ul>
     </div>
