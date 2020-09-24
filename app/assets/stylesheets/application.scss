@@ -78,10 +78,15 @@ textarea {
  border-bottom: 2px solid #ccc100;
 }
 
+
+
 @media (max-width: 420px) {
  .btn--yellow {
   width: 85px;
   font-size: .8em;
   border-bottom: 3px solid #ccc100;
+ }
+ .pagination li {
+  font-size: .5em;
  }
 }

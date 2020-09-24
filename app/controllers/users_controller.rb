@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     # @posts = Post.where(user_id: @user.id).order(id: :desc).page(params[:page])
-    @posts = @user.posts.order(id: :desc).page(params[:page])
+    @posts = @user.posts.order(id: :desc).page(params[:page]).per(15)
     # 駅ベースで投稿数を割り出し
     count = @user.posts.group(:shop_station).count
     # 一番訪れた駅から属性決定
