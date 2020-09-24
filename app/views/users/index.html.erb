@@ -19,7 +19,7 @@
             <div class="card-body">
               <h4 class="card-title"><%= user.name %></h4>
               <p class="profile">プロフィール：<% if user.profile? %><br><span class="profile-content"><%= user.profile %></span><% else %><br>登録がありません。<% end %></p>
-              <p><%= link_to 'このユーザーを見てみる', user_path(user) %></p>
+              <p class="link"><%= link_to 'このユーザーを見てみる', user_path(user) %></p>
             </div>
           </div>
       </div>
