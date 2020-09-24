@@ -18,7 +18,7 @@
           <div class="col-9">
             <div class="card-body">
               <h4 class="card-title"><%= user.name %></h4>
-              <div class="profile">プロフィール：<p><% if user.profile? %><%= user.profile %><% else %>登録がありません。<% end %></p></div>
+              <p class="profile">プロフィール：<% if user.profile? %><span class="profile-content"><%= user.profile %></span><% else %>登録がありません。<% end %></p>
               <p><%= link_to 'このユーザーを見てみる', user_path(user) %></p>
             </div>
           </div>
