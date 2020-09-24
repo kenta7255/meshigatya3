@@ -12,7 +12,7 @@
       <h3><%= @user.name %></h3>
       <% if @user.area? %><p>良く行くエリア： <%= @user.area %></p><% end %>
       <p><%= @count %></p>
-      <p class="profile">プロフィール：<br><% if @user.profile? %><%= @user.profile %><% else %>登録がありません。<% end %></p>
+      <p class="profile">プロフィール：<br><% if @user.profile? %><span style="font-size:0.8em;"><%= @user.profile %></span><% else %>登録がありません。<% end %></p>
       <% if current_user == @user %>
         <%= link_to 'プロフィールを編集する', edit_user_path(@user) %>
       <% end %>
