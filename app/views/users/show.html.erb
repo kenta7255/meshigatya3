@@ -19,7 +19,10 @@
       <%= link_to '気になるリスト', interests_user_path(@user)  %>
     </div>
   </div>
-
+  
+  <% if @posts.empty? %> 
+        <p>行ったお店がありません。</p>
+      <% else %>
   <table class="table show_table">
     <tr>
       <% unless current_user == @user %>
@@ -91,5 +94,6 @@
   <% end %>
   </div>
 </div>
+<% end %>
 <% end %>
 </dvi>
