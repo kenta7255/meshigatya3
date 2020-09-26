@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-md-6 mt-md-5 text">
-      <h3><%= @user.name %></h3>
+      <h3 class="user-name"><%= @user.name %></h3>
       <% if @user.area? %><p>良く行くエリア： <%= @user.area %></p><% end %>
       <p><%= @count %></p>
       <p class="profile">プロフィール：<br><% if @user.profile? %><span style="font-size:0.8em;"><%= @user.profile %></span><% else %>登録がありません。<% end %></p>
@@ -60,7 +60,7 @@
         </td>
     <% end %>
   <% end %>
-        <td class="nowrap shop-station-td"><%= post.shop_station %></td>
+        <td class="nowrap"><%= post.shop_station %></td>
         <td class="content">
           <a href = "<%= post.shop_url %>" target="_blank"　rel="noopener noreferrer"><%= post.shop_name %></a>
           <% if post.content? %>
@@ -88,7 +88,7 @@
           <img src="/assets/default.png" class="card-img defalt">
       　<% end %>
       </div>
-      <h4><%= sim_user.name %></h4>
+      <h4 class="user-name"><%= sim_user.name %></h4>
         <% end %>
     </div>
   <% end %>

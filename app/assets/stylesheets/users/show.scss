@@ -64,8 +64,19 @@
     cursor: pointer;
     color: #CCCCCC;
   }
+  .sim-user-box {
+    .sim-user-image {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      img {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+      }
+    }
+  }
 }
-
 
 @media (max-width: 420px) {
   .user-show {
@@ -89,9 +100,6 @@
       font-size: .8em;
       th {
         padding: .3em;
-      }
-      .shop-station-td {
-        font-size: .5em;
       }
     }
     .content {

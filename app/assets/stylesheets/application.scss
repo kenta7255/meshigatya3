@@ -78,6 +78,10 @@ textarea {
  border-bottom: 2px solid #ccc100;
 }
 
+.user-name {
+ word-break: break-all;
+}
+
 
 
 @media (max-width: 420px) {
@@ -89,4 +93,5 @@ textarea {
  .pagination li {
   font-size: .8em;
  }
+
 }
