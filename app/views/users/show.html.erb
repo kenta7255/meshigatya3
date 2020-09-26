@@ -61,14 +61,14 @@
     <% end %>
   <% end %>
         <td class="nowrap"><%= post.shop_station %></td>
-        <td class="content">
+        <td>
           <a href = "<%= post.shop_url %>" target="_blank"　rel="noopener noreferrer"><%= post.shop_name %></a>
           </td>
         <td class="eval nowrap"><% if post.eval == 'good' %><i class="far fa-thumbs-up good"></i><% elsif post.eval == 'bad' %><i class="far fa-thumbs-down bad"></i><% else %>評価なし<% end %></td>
        </tr>
        <% if post.content? %>
        <tr>
-            <td colspan="3" style="border-top:none !important; padding-top: 0;"><p class="shop-memo">メモ：<br><span class="memo-content"><%= post.content %></span></p></td>
+            <td class="content" colspan="4" style="border-top:none !important; padding-top: 0;"><p class="shop-memo">メモ：<br><span class="memo-content"><%= post.content %></span></p></td>
             </tr>
           <% end %>
      <% end %>

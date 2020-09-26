@@ -6,6 +6,8 @@
     <tr><th class="nowrap">住所</th><td id="shop_address"></td></tr>
   </table>
   
+  <p style="margin-top:30px; font-size:.7em; text-align:right;">Supported by <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">ぐるなびWebService</a></p>
+  
   <%= form_with(model: @post, local: true) do |f| %>
     <div class="form-group custom-radio">
       <%= f.radio_button :eval, :good %>
