@@ -60,7 +60,7 @@
         </td>
     <% end %>
   <% end %>
-        <td class="nowrap"><%= post.shop_station %></td>
+        <td class="nowrap shop-station-td"><%= post.shop_station %></td>
         <td class="content">
           <a href = "<%= post.shop_url %>" target="_blank"　rel="noopener noreferrer"><%= post.shop_name %></a>
           <% if post.content? %>
@@ -79,8 +79,8 @@
       <h2>おすすめユーザー</h2>
     <div class="row">
       <% @sim_users.each do |sim_user| %>
-    <div class="col-md-4 sim-user-box">
-      <div style="width:150px; height:150px; margin: 0 auto;">
+    <div class="col-4 sim-user-box">
+      <div class="sim-user-image">
         <%= link_to  user_path(sim_user) do %>
         <% if sim_user.image? %>                                                             
           <%= image_tag sim_user.image.thumb.url class: 'card-img' %>
@@ -96,4 +96,4 @@
 </div>
 <% end %>
 <% end %>
-</dvi>
+</div>

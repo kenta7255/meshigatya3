@@ -86,6 +86,9 @@ header {
 @media (max-width: 420px) {
   header {
     nav {
+      .navbar-brand {
+        margin-right: 0;
+      }
       .navbar-brand .logo {
         width: 150px;
       }
@@ -96,8 +99,12 @@ header {
         }
       }
 
-      .line {
-        width: 18px;
+      .navbar-brand:hover .line {
+        transform: translateX(-10px) translateY(0px);
+      }
+
+      .navbar-brand:hover .food {
+        transform: translateX(-17px) translateY(15px) rotateZ(70deg);
       }
 
       .food {

@@ -88,10 +88,10 @@
     .show_table {
       font-size: .8em;
       th {
-        padding: .5em;
+        padding: .3em;
       }
-      .int-th {
-        width: 20px;
+      .shop-station-td {
+        font-size: .5em;
       }
     }
     .content {
@@ -99,7 +99,7 @@
     }
     .shop-memo {
       margin-bottom: 0;
-      .memo-content{
+      .memo-content {
         font-size: .6em;
       }
     }
@@ -107,7 +107,25 @@
     .bad,
     .not_int,
     .int {
-      font-size: 2em;
+      font-size: 1.5em;
+    }
+    .sim-user-box {
+      .sim-user-image {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto;
+        img {
+          width: 90px;
+          height: 90px;
+          margin: 0 auto;
+        }
+      }
+      h4 {
+        font-size: 1.2em;
+      }
+    }
+    h2 {
+      font-size: 1.5em;
     }
   }
 }

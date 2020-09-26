@@ -64,6 +64,7 @@
     }
   }
 }
+
 @media (max-width: 768px) {
   .result_container {
     .result_map {
@@ -98,4 +99,11 @@
   }
 }
 
-
+@media (max-width: 330px) {
+  .result_container {
+    .result_btn {
+      width: 9em;
+      font-size: 0.6em;
+    }
+  }
+}
