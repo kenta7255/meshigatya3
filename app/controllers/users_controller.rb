@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def edit
     # URL直打ちで他ユーザーの編集画面に飛んだ場合
     unless current_user == @user
-      flash[:danger] = '他のユーザーのプロフィールは編集できません。'
+      # flash[:danger] = '他のユーザーのプロフィールは編集できません。'
       redirect_to user_url(current_user)
     end
   end
